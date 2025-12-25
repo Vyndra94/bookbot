@@ -1,11 +1,11 @@
-def wordcount():
-    with open("books/frankenstein.txt") as f:
+def wordcount(book_path):
+    with open(book_path) as f:
         wordlist = f.read().split()
     print(f"Found {len(wordlist)} total words")
 
-def characters():
+def characters(book_path):
     characters = {}
-    with open("books/frankenstein.txt") as f:
+    with open(book_path) as f:
         lowercase_contents = f.read().lower()
         for char in lowercase_contents:
             if char.isalpha():
@@ -15,8 +15,8 @@ def characters():
                     characters[char] = 1
         return characters
 
-def sorted_characters():
-    sorted_characters = list({"char": k, "num": v} for k, v in characters().items())
+def sorted_characters(book_path):
+    sorted_characters = list({"char": k, "num": v} for k, v in characters(book_path).items())
     def sort_key(sorted_characters):
         return sorted_characters["num"]
     sorted_characters.sort(reverse=True, key=sort_key)
